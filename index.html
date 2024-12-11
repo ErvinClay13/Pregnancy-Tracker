@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pregnancy Tracker</title>
+  </head>
+  <body>
+    <h1>Pregnancy Tracker</h1>
+    <p>Enter the first day of your last menstrual period (LMP):</p>
+    <input type="date" id="startDate" />
+    <button id="trackerBtn">Track Pregnancy</button>
+    <!-- <button onclick="trackPregnancy()" id="trackerBtn">Track Pregnancy</button> -->
+
+    <h2>Results:</h2>
+    <p id="result"></p>
+
+    <div id="btnContanier">
+      <button id="prevWeek" onclick="changeWeekBy(-1)">Previous Week</button>
+      <button id="nextWeek" onclick="changeWeekBy(1)">Next Week</button>
+    </div>
+
+    <div class="container">
+      <div class="fourBoxes">
+        <div class="box"><img src="" alt="" id="weekChange" /></div>
+        <div class="box"><img src="" alt="" id="fruitChange" /></div>
+        <div class="box"><img src="" alt="" id="imgChange" /></div>
+        <div class="box"><img src="" alt="" id="bodyChange" /></div>
+      </div>
+    </div>
+  
+    <script src="script.js"></script>
+  </body>
+</html>

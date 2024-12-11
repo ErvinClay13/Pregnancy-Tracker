@@ -1,0 +1,87 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(188, 188, 188);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: rgb(177, 75, 133);
+    width: 90%; /* Flexible width */
+    max-width: 430px; /* Restrict width */
+    height: auto; /* Allow flexible height */
+    padding: 20px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+#btnContanier {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center align when wrapped */
+}
+
+#startDate {
+    background-color: rgb(177, 75, 133);
+    margin-bottom: 10px;
+    height: 30px;
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Restrict width */
+    border: solid 2px black;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#trackerBtn, #prevWeek, #nextWeek {
+    width: 100px;
+    height: 50px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: rgb(177, 75, 133);
+}
+
+.fourBoxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Maintain 2 columns */
+    gap: 15px;
+    width: 100%; /* Flexible grid width */
+    max-width: 430px; /* Restrict grid width */
+}
+
+.box, #imgChange, #bodyChange, #weekChange, #fruitChange {
+    border: solid black;
+    border-radius: 30px;
+    width: 100%; /* Responsive width */
+    max-width: 200px; /* Restrict box size */
+    aspect-ratio: 1; /* Ensure the box is square */
+}
+
+/* Media Queries */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+    .fourBoxes {
+        grid-template-columns: repeat(2, 1fr); /* Still 2 columns */
+    }
+}
+
+/* For mobile devices (480px and below) */
+@media (max-width: 480px) {
+    .fourBoxes {
+        grid-template-columns: repeat(2, 1fr); /* Maintain 2 columns */
+    }
+
+    .box, #imgChange, #bodyChange, #weekChange, #fruitChange {
+        max-width: 150px; /* Adjust box size */
+    }
+
+    #btnContanier {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center align */
+    }
+}
