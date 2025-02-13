@@ -52,15 +52,16 @@ function changeWeekBy(offset) {
 }
 
 function updateResults() {
-    // Calculate the days in the current week using modulo
-    const daysInCurrentWeek = diffInDays % 7; // Get the days within the current week (0 to 6)
+    // Calculate the days in the current week
+    const daysInCurrentWeek = diffInDays - (currentWeek * 7); // Get the days into the current week
+    const days = daysInCurrentWeek;
 
     document.getElementById("result").innerHTML = `
         <strong>Pregnancy Details:</strong><br>
         Weeks: ${currentWeek}<br>
-        Days: ${daysInCurrentWeek}<br>
+        Days: ${days}<br>
     `;
-} 
+}
 
 
 function updateImages() {

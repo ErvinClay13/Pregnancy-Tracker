@@ -60,7 +60,7 @@ function updateResults() {
         Weeks: ${currentWeek}<br>
         Days: ${daysInCurrentWeek}<br>
     `;
-} 
+}
 
 
 function updateImages() {

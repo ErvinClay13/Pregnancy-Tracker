@@ -1,6 +1,4 @@
 let currentWeek = 0; // Tracks the current week
-let diffInDays = 0; // Track the difference in days
-
 const trackerBtn = document.getElementById("trackerBtn");
 
 trackerBtn.addEventListener("click", () => {
@@ -30,15 +28,18 @@ function trackPregnancy() {
         return;
     }
 
-    diffInDays = Math.floor((today - startDate) / MS_PER_DAY); // Calculate total days difference
-    currentWeek = Math.floor(diffInDays / 7); // Calculate the current week
+    const diffInDays = Math.floor((today - startDate) / MS_PER_DAY);
+    currentWeek = Math.floor(diffInDays / 7); // Calculate weeks
 
     // Ensure week is within valid range
     currentWeek = Math.min(40, Math.max(0, currentWeek));
 
+    // Calculate days of the current week
+    const daysInCurrentWeek = diffInDays % 7; // The remaining days within the current week
+
     // Display the results
-    updateResults();
-    updateImages();
+    updateResults(currentWeek, daysInCurrentWeek);
+    updateImages(currentWeek);
     updateButtons();
 }
 
@@ -46,22 +47,18 @@ function changeWeekBy(offset) {
     const MAX_WEEKS = 40;
     currentWeek = Math.min(MAX_WEEKS, Math.max(0, currentWeek + offset)); // Keep week within bounds
 
-    updateResults();
-    updateImages();
+    updateResults(currentWeek);
+    updateImages(currentWeek);
     updateButtons();
 }
 
-function updateResults() {
-    // Calculate the days in the current week using modulo
-    const daysInCurrentWeek = diffInDays % 7; // Get the days within the current week (0 to 6)
-
+function updateResults(currentWeek, daysInCurrentWeek) {
     document.getElementById("result").innerHTML = `
         <strong>Pregnancy Details:</strong><br>
         Weeks: ${currentWeek}<br>
         Days: ${daysInCurrentWeek}<br>
     `;
-} 
-
+}
 
 function updateImages() {
     // Baby image

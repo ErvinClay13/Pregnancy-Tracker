@@ -1,20 +1,24 @@
-let currentWeek = 0; // Tracks the current week
-let diffInDays = 0; // Track the difference in days
-
+let currentWeek = 0; // This keeps track of the current week
 const trackerBtn = document.getElementById("trackerBtn");
 
-trackerBtn.addEventListener("click", () => {
-    trackPregnancy();
-    clearDates();
+trackerBtn.addEventListener("click", () =>  {
+  trackPregnancy();
+  clearDates();
 });
 
 function clearDates() {
-    document.getElementById("startDate").value = "";
+    startDate.value = "";
+}
+
+function addWeek() {
+    
 }
 
 function trackPregnancy() {
     const MS_PER_DAY = 24 * 60 * 60 * 1000;
     const DAYS_IN_PREGNANCY = 280;
+
+    
 
     const startDateInput = document.getElementById("startDate").value;
     if (!startDateInput) {
@@ -30,38 +34,41 @@ function trackPregnancy() {
         return;
     }
 
-    diffInDays = Math.floor((today - startDate) / MS_PER_DAY); // Calculate total days difference
-    currentWeek = Math.floor(diffInDays / 7); // Calculate the current week
+    const diffInDays = Math.floor((today - startDate) / MS_PER_DAY);
+    currentWeek = Math.floor(diffInDays / 7); // Set currentWeek based on the calculated weeks
+    const days = diffInDays % 7;
 
-    // Ensure week is within valid range
-    currentWeek = Math.min(40, Math.max(0, currentWeek));
+    // Calculate due date
+    const dueDate = new Date(startDate.getTime() + DAYS_IN_PREGNANCY * MS_PER_DAY);
 
     // Display the results
-    updateResults();
-    updateImages();
-    updateButtons();
+    document.getElementById("result").innerHTML = `
+        <strong>Pregnancy Details:</strong><br>
+        Weeks: ${currentWeek}<br>
+        Days: ${days}<br>
+        Estimated Due Date: ${dueDate.toDateString()}
+    `;
+
+    updateImages(); // Update images for the initial calculation
 }
 
 function changeWeekBy(offset) {
     const MAX_WEEKS = 40;
-    currentWeek = Math.min(MAX_WEEKS, Math.max(0, currentWeek + offset)); // Keep week within bounds
-
-    updateResults();
+    currentWeek = Math.min(MAX_WEEKS, Math.max(0, currentWeek + offset)); // Ensure week stays within bounds
     updateImages();
-    updateButtons();
+
+
+    // const container = document.querySelector(".container");
+    const nextWeek = document.getElementById("nextWeek");
+
+    if(currentWeek >= 40) {
+      nextWeek.style.display = "none";
+    }
+    else 
+    {
+      nextWeek.style.display = "block";
+    } 
 }
-
-function updateResults() {
-    // Calculate the days in the current week using modulo
-    const daysInCurrentWeek = diffInDays % 7; // Get the days within the current week (0 to 6)
-
-    document.getElementById("result").innerHTML = `
-        <strong>Pregnancy Details:</strong><br>
-        Weeks: ${currentWeek}<br>
-        Days: ${daysInCurrentWeek}<br>
-    `;
-} 
-
 
 function updateImages() {
     // Baby image
